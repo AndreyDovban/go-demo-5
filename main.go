@@ -1,16 +1,29 @@
 package main
 
 import (
+	"demo/weather/geo"
+	"demo/weather/weather"
 	"flag"
 	"log"
 )
 
 func main() {
 	log.Println("start")
-	name := flag.String("name", "Anton", "Имя пользователя")
-	age := flag.Int("age", 18, "Возраст пользователя")
+	city := flag.String("city", "", "Город пользователя")
+	format := flag.Int("format", 1, "Формат ыввода данных")
 
 	flag.Parse()
 
-	log.Println(*name, *age)
+	log.Println(*city)
+
+	geoData, err := geo.GetMyLocation(*city)
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	log.Println(geoData)
+
+	weathrData := weather.GetWeather(*geoData, *format)
+
+	log.Println(weathrData)
 }
