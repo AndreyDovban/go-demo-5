@@ -75,9 +75,9 @@ func ChekCity(city string) bool {
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
-	if errr != nil {
-		return false
-	}
+	// if errr != nil {
+	// 	return false
+	// }
 
 	var populationResponse CityPopulationResponse
 	json.Unmarshal(body, &populationResponse)
