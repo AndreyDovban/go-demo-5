@@ -1,7 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+	"go-demo-5/geo"
+	"go-demo-5/weather"
+)
 
 func main() {
-	fmt.Println("restart")
+	city := flag.String("city", "", "Город пользователя")
+
+	flag.Parse()
+
+	fmt.Println(*city)
+
+	geoData, err := geo.GetMyLocation(*city)
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	fmt.Println(geoData)
+
+	weather := weather.GetWeather(*geoData, 1)
+	fmt.Println(weather)
 }
