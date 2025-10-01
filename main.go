@@ -12,7 +12,7 @@ func main() {
 
 	flag.Parse()
 
-	fmt.Println(*city)
+	// fmt.Println(*city)
 
 	geoData, err := geo.GetMyLocation(*city)
 
@@ -20,8 +20,8 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
-	fmt.Println(geoData)
+	// fmt.Println(geoData)
 
-	weather := weather.GetWeather(*geoData, 1)
+	weather := weather.GetWeather(*geoData, 3)
 	fmt.Println(weather)
 }
